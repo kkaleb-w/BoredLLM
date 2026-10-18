@@ -29,6 +29,20 @@ of world, roughly one hundred ticks, no instructions, no web, no corpus.
 Both are fatal if false. Both are cheap to test. Everything downstream is a monument to nothing
 if this fails.
 
+**Added after reconnaissance** ([17](17-reconnaissance.md)). Risk 1 has a demonstrated
+mechanism and a demonstrated fix. Models given a full scene state leak knowledge the entity
+cannot have, 67 to 72 percentage points above the guessing baseline, and the leak is
+**format-dependent**: changing only the scene layout raised it from under 10 to over 60
+percentage points in two otherwise compliant models. Writing as the scene's author leaks nearly
+as much as role-playing the character. The fix is stated in that work and adopted here:
+
+> **The input must contain only what the entity observes.** The world may hold everything; the
+> creature receives a view from inside it.
+
+The pilot success criterion is therefore: the creature continues the state, with neither
+assistant artifacts nor omniscient-narrator artifacts, when given only what it can observe. The
+protocol and controls are in [17](17-reconnaissance.md).
+
 **Reversal.** Only evidence that the pilot cannot be run.
 
 ---

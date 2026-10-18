@@ -27,6 +27,26 @@ preprints are claims, not settled results.
 - **The Bored Brain: Insular Cortex and the Default Mode Network** (review of boredom, DMN,
   and mind-wandering overlaps). https://docslib.org/doc/7004451/
 
+## Role-play, persona, and degeneration (preprints)
+
+Added for [Reconnaissance](docs/17-reconnaissance.md). All identifiers verified.
+
+- **Zhang, X. (2026).** The Curse of Knowledge in Role-Playing Language Models.
+  arXiv:2610.17327. 480 scenes with counterfactual twins, 11 open-weight models. Characters use
+  content from speech they cannot hear, 67 and 72 percentage points above the guessing baseline.
+  Compliance depends on input format; writing as the scene's author leaks nearly as much as
+  role-play; giving models only what the character observes stops the leak.
+  https://arxiv.org/abs/2610.17327
+- **Lu, C., Gallagher, J., Michala, J., Fish, K., and Lindsey, J. (2026).** The Assistant Axis:
+  Situating and Stabilizing the Default Persona of Language Models. arXiv:2601.10387.
+  https://arxiv.org/abs/2601.10387
+- **Xu, D., and colleagues (2026).** LoopGuard: Breaking Self-Reinforcing Attention Loops via
+  Dynamic KV Cache Intervention. arXiv:2604.10044. Self-reinforcing attention loops, worse in
+  smaller models. https://arxiv.org/abs/2604.10044
+- **Unverified:** arXiv:2608.21898, "Training Needs Trustworthy Worlds: Verified Synthetic Web
+  Environments for Agent Learning." Appeared in search results, page not retrievable at time of
+  writing.
+
 ## Digital media, boredom, and switching
 
 The correction in [The Web as World](docs/14-the-web-as-world.md) rests on these.
