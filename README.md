@@ -46,6 +46,8 @@ falls and why.
 | [11. Limits and Open Problems](docs/11-limits.md) | The ceiling, stated plainly |
 | [12. Tools](docs/12-tools.md) | The stack, and what to use and what to cut |
 | [13. Hosting](docs/13-hosting.md) | Three server options, free or near free |
+| [14. The Web as World](docs/14-the-web-as-world.md) | Correcting the boredom claim, and the switching-versus-drift contrast |
+| [15. Building the Synthetic Web](docs/15-building-the-synthetic-web.md) | Corpus size, the generation trap, and the build order |
 | [References](REFERENCES.md) | Every source cited, with links |
 
 ## What this is not

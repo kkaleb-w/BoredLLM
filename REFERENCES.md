@@ -27,6 +27,34 @@ preprints are claims, not settled results.
 - **The Bored Brain: Insular Cortex and the Default Mode Network** (review of boredom, DMN,
   and mind-wandering overlaps). https://docslib.org/doc/7004451/
 
+## Digital media, boredom, and switching
+
+The correction in [The Web as World](docs/14-the-web-as-world.md) rests on these.
+
+- **Tam, K., and colleagues (2024).** Fast-Forward to Boredom: How switching behavior on
+  digital media makes people more bored. *Journal of Experimental Psychology: General*. Seven
+  experiments, N = 1,223, six preregistered. Digital switching causally **increases** boredom
+  and reduces satisfaction, attention, and meaning. https://doi.org/10.1037/xge0001639
+- **People are increasingly bored in our digital age (2024).** *Communications Psychology*
+  (Nature). Review of converging evidence that digital media use causally increases boredom,
+  including X use and within-person boredom, smartphone use at work, and a longitudinal
+  result on problematic smartphone use as a predictor of chronic boredom.
+  https://www.nature.com/articles/s44271-024-00155-9
+- **Boredom and digital media use: A systematic review and meta-analysis (2023).**
+  *Computers in Human Behavior Reports*. 59 studies; boredom with digital media use r = .084,
+  with problematic use r = .342. https://doi.org/10.1016/j.chbr.2023.100313
+- **Trait boredom and problematic use of new technologies: a meta-analysis (2026).** 25
+  studies, n = 15,152, r = .38. https://doi.org/10.1177/00332941261459995
+- **Boredom and smartphone addiction: systematic review and meta-analysis (2025).** 54
+  studies, n = 36,245, r = .412. https://doi.org/10.1177/00332941251314713
+- **Psychological and physiological effects of applying self-control to the mobile phone
+  (2019).** *PLOS One*, preregistered, N = 125. Phone users reported **less** mind-wandering
+  (M = 4.20) than participants with no device (M = 6.07, p < .001).
+  https://doi.org/10.1371/journal.pone.0224464
+- **Ophir, E., Nass, C., and Wagner, A. D. (2009).** Cognitive control in media multitaskers.
+  *PNAS*, 106(37). Heavy media multitaskers filter worse, both external distractors and
+  irrelevant internal representations. https://doi.org/10.1073/pnas.0903620106
+
 ## Mind-wandering, spontaneous thought, and the default mode
 
 - **Raichle, M. E., and colleagues (2001).** A default mode of brain function. *PNAS*, 98,
