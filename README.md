@@ -31,6 +31,11 @@ falls and why.
 
 ## Read in this order
 
+**Implementing this? Start with [HANDOFF.md](HANDOFF.md) instead.** It routes to the decision
+record, the reconnaissance, and the build order, and lists the non-negotiables.
+
+Otherwise:
+
 | Document | What it covers |
 |---|---|
 | [01. The Problem](docs/01-the-problem.md) | Why prompt-driven agents cannot idle, and what that costs |
@@ -52,17 +57,17 @@ falls and why.
 | [17. Reconnaissance](docs/17-reconnaissance.md) | What tooling exists, and what is already known about the two fatal risks |
 | [References](REFERENCES.md) | Every source cited, with links |
 
+## Status
+
+Design document. Not implemented. Written to be handed to an engineer, and to be wrong in
+interesting ways. Start at [HANDOFF.md](HANDOFF.md).
+
 ## What this is not
 
 This is not a consciousness claim. Nobody in this field can test for consciousness, and most
 of the people who say they can are selling something. This is a claim about **observable
 behavior under a specific setup**, with a measurable dependent variable and pre-registered
 failure modes. Nothing more.
-
-## Status
-
-Design document. Not implemented. Written to be handed to an engineer, and to be wrong in
-interesting ways.
 
 ## A note on style
 

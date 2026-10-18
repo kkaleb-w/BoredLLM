@@ -1,8 +1,62 @@
 # 13. Hosting
 
-The creature must run continuously for ten to twenty days with no gaps. This document lists
-three options, cheapest and most reliable first. Prices are point-in-time and move; check
-before committing.
+The creature must run continuously for the length of the study with no gaps. This document
+lists the options. **Option 0 is the chosen one.** Prices are point-in-time list prices and
+move, so confirm in the console before committing.
+
+## Option 0 (chosen): AWS EC2
+
+Decided. Kaleb runs this on EC2. Figures below are us-east-1 on-demand list prices, checked
+2026-10-12.
+
+### Pick an instance
+
+| Instance | vCPU | RAM | Arch | On-demand | Per month |
+|---|---|---|---|---|---|
+| **t4g.medium** | 2 | 4 GiB | arm64 (Graviton2) | $0.0336/hr | about $24.53 |
+| t4g.large | 2 | 8 GiB | arm64 | $0.0672/hr | about $49.06 |
+| t3.medium | 2 | 4 GiB | x86_64 | $0.0416/hr | about $30.37 |
+| c7g.large | 2 | 4 GiB | arm64 | $0.0725/hr | about $52.93 |
+| t4g.xlarge | 4 | 16 GiB | arm64 | $0.1344/hr | about $98.11 |
+
+**Recommendation: t4g.medium**, with one important design consequence.
+
+### Why a burstable instance is actually correct here
+
+The usual objection to the T family is CPU credits: sustained load drains them and the instance
+throttles to baseline. That objection does not apply to this workload, and the reason is the
+tick rate. At one tick per ten minutes, with a few hundred tokens generated per tick, a small
+model runs for tens of seconds out of every six hundred. That is on the order of **five percent
+duty cycle**. The load is spiky and low, which is exactly what burstable instances are built
+for. Reserving a dedicated-vCPU instance for a five percent duty cycle is wasted money.
+
+**Corollary: do not shorten the tick interval casually.** A five minute tick doubles the corpus
+requirement and doubles the CPU duty cycle, and it is the fastest way to turn a cheap instance
+into a throttled one.
+
+### The memory trick that makes 4 GiB enough
+
+Do **not** run three separate model servers for the three creatures. Run **one model process
+and three creature states**: one set of weights in memory, three separate contexts, drives, and
+memory stores. The creatures share weights and differ only in state, which is the correct
+architecture anyway and it is what makes the smallest instance viable.
+
+With that, three 0.5B to 1.5B models at 4-bit fit comfortably in 4 GiB. Without it, 8 GiB.
+
+### Storage
+
+A separate EBS volume for the frozen corpus, the memory databases, and the logs. The corpus is
+the big item (a BrowseComp-Plus style fixed corpus is about 1.1 GB). A 20 GiB gp3 volume is
+ample and costs on the order of a dollar or two a month at list price. **Never put the state on
+instance storage**, because the state is the experiment.
+
+### Two caveats
+
+- **arm64.** t4g and c7g are Graviton, so use arm64 builds of Ollama and llama.cpp. Both
+  provide them. If a dependency only ships x86_64, fall back to t3.
+- **Spot.** t3.medium and t4g.medium spot run around $0.016 to $0.017 per hour, roughly half
+  price, but the instance can be reclaimed. That is survivable **only** if state is written
+  durably on every tick, which the design already requires.
 
 ## Option 1: Oracle Cloud Always Free (free, forever)
 
@@ -63,8 +117,9 @@ If you want a real GPU, for faster ticks, larger models, or the weight-updating 
 
 | Goal | Pick |
 |---|---|
+| **Already on AWS, want the decided option** | **EC2 t4g.medium** (Option 0) |
 | Zero budget, happy to provision ARM and retry on capacity | **Oracle Always Free** |
-| Want it to just work, cheap, no surprises | **Hetzner CX33** |
+| Want it to just work, cheap, no surprises, non-AWS | **Hetzner CX33** |
 | Want speed, a bigger model, or weight updates during sleep | **Vast.ai or RunPod**, short runs only |
 
 ## Deployment shape (any option)
