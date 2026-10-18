@@ -48,6 +48,7 @@ falls and why.
 | [13. Hosting](docs/13-hosting.md) | Three server options, free or near free |
 | [14. The Web as World](docs/14-the-web-as-world.md) | Correcting the boredom claim, and the switching-versus-drift contrast |
 | [15. Building the Synthetic Web](docs/15-building-the-synthetic-web.md) | Corpus size, the generation trap, and the build order |
+| [16. Study 1: Decision Record](docs/16-study-1-decisions.md) | The choices fixed before any run, with reasons and reversals |
 | [References](REFERENCES.md) | Every source cited, with links |
 
 ## What this is not
