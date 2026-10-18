@@ -77,7 +77,7 @@ without data.
 
 ## 4. What is open
 
-- **Model choice.** Base models are preferred (the assistant identity is the trained default)
+- **Model choice.** **Phase 0 says sub-1B is too small**: 0.5B loops or templates, 9B and up hold a stream. See [Phase 0 results](docs/19-phase-0-results.md). Base models are preferred (the assistant identity is the trained default)
   but the pilot should compare base against instruct. Model size in the 0.5B to 1.5B range.
 - **Exactly how the state is rendered.** Format demonstrably drives behavior, so this is an
   experimental variable, not a formatting detail. Sweep at least two layouts in the pilot.
@@ -193,6 +193,7 @@ docs/
   16-study-1-decisions.md            the decisions, with reasons and reversals
   17-reconnaissance.md               tooling prior art, and the two fatal risks
   18-monitoring.md                   the record, the view, and the alerts
+  19-phase-0-results.md              first run: 0.5B collapses, 9B+ holds a stream
 ```
 
 ## 9. The two things most likely to go wrong
