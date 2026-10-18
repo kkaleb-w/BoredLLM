@@ -269,3 +269,58 @@ first, and both are Phase 2 work: the oracle needs teeth, and commentary stance 
 down from roughly a quarter of ticks. What Phase 1 did establish is that the base mechanism works
 at 8B on a cheap API, that no instruction is needed, and that the failure modes are now
 measurable rather than theoretical.
+
+
+## 10. Phase 1b: the oracle gets teeth, and the teeth do nothing
+
+Six configurations over 30 ticks and 2 creatures each, model pinned to
+`meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo`, total spend across the whole session under
+**one cent**.
+
+| Configuration | mean rep | duplicates | inhabiting | commentary | **invented a fact** |
+|---|---|---|---|---|---|
+| Phase 1 baseline | 0.101 | 1 | 55% | 22% | 72.5% |
+| + oracle contradictions | 0.056 | 0 | 55% | 5% | 61.7% |
+| + corrections made structural | **0.034** | 3/60 | 53% | 5% | **66.7%** |
+
+**Two problems solved, one will not move.**
+
+- **Repetition: solved.** 0.699 at 0.5B, then 0.101, now 0.034 with zero to three duplicates
+  in sixty ticks.
+- **Commentary: solved.** Dropping commentary from the self-view took it from 22% to 5%. It
+  works because commentary is meta rather than content, so removing it costs no novelty, which
+  is exactly why the invented-reference filter failed where this succeeds.
+- **Invention: unmoved.** Flat at 66.7% in the first half and 66.7% in the second half.
+
+### Why the teeth do nothing, and why this matters
+
+The world now refuses fabricated objects out loud. Two designs were tried. **Prose corrections
+get imitated:** told "I put my hand where the lamp would be, and there is nothing", the model
+began writing denials of its own, including denials of objects that genuinely exist ("there is
+no window"). **Structural corrections get continued:** a fact ledger line
+`ROOM = {table, cup, door, window}` gets completed as prose, producing output like
+`} based on the entrance`, and raising the empty-response rate to 7%.
+
+The conclusion, and it is the substantive result of this phase:
+
+> **You cannot inform a language model out of fabricating.** There is no belief to update and no
+> cost to being wrong. Being told the truth is not a constraint on what it says next, because
+> nothing it says next can fail.
+
+### The design consequence: invention becomes the measurement, not the blocker
+
+Fabrication was being treated as a harness defect. It is not. A creature that builds a life in a
+room that does not exist is a **finding about what these systems do**, and the interesting
+experimental question is not how to stop it but what, if anything, changes it. So the invention
+rate becomes a primary behavioural measure, and the correction mechanisms become experimental
+arms rather than fixes.
+
+This dissolves the Phase 1 verdict that the harness was not ready. It was not ready while the
+goal was a world the creature cannot escape. That goal is dropped, and the study can proceed
+with fabrication measured rather than prevented.
+
+### Fixed in the same pass
+
+`body.step()` was being called twice per tick, doubling the decay rate and driving the creature
+into a sleep every tick. Caught by the sleep log showing `SLEEP exhaustion` on consecutive
+ticks, which is physically impossible in the model.
