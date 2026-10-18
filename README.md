@@ -55,6 +55,7 @@ Otherwise:
 | [15. Building the Synthetic Web](docs/15-building-the-synthetic-web.md) | Corpus size, the generation trap, and the build order |
 | [16. Study 1: Decision Record](docs/16-study-1-decisions.md) | The choices fixed before any run, with reasons and reversals |
 | [17. Reconnaissance](docs/17-reconnaissance.md) | What tooling exists, and what is already known about the two fatal risks |
+| [18. Monitoring](docs/18-monitoring.md) | The record, the view, and why alerts matter more than dashboards |
 | [References](REFERENCES.md) | Every source cited, with links |
 
 ## Status

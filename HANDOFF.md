@@ -188,6 +188,7 @@ docs/
   15-building-the-synthetic-web.md   corpus size, the generation trap, build order
   16-study-1-decisions.md            the decisions, with reasons and reversals
   17-reconnaissance.md               tooling prior art, and the two fatal risks
+  18-monitoring.md                   the record, the view, and the alerts
 ```
 
 ## 9. The two things most likely to go wrong
