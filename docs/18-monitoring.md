@@ -27,6 +27,7 @@ Append only. Never mutate. One line per tick, on the durable volume. Minimum fie
 | memories retrieved, with ids and scores | is recall cue-dependent |
 | repetition metrics (n-gram overlap with prior ticks) | the anti-loop check |
 | planted-item hits | the causal handle |
+| self-view size in tokens | confound control: a larger self-view raises repetition |
 | sleep events, consolidation summaries | subsystem activity |
 | errors, retries, model identity and parameters | provenance |
 
@@ -82,6 +83,68 @@ Ordered by how much each one contributes to understanding.
 7. **Sleep events.** As markers, plus the wake-difference summary. A creature that wakes
    different is the cleanest falsifiable claim in the study.
 8. **Health.** Last tick age, restart count, disk, error count. Unglamorous and necessary.
+
+## The creature seeing its own thoughts
+
+There is a natural question: can the creature watch its own thinking as it happens. The honest
+answer is no, and the reason is structural rather than a limitation to be engineered around.
+
+**Within a tick, there is no inner eye.** The creature does not perceive its own generation, it
+*is* the generation. Live self-observation would require a second process watching the first,
+which is not what a mind does and is precisely the dual-process structure this architecture
+avoids. Worse, that second process is an author-level vantage on the creature's own output, which
+is the same failure pattern as the omniscient narrator in
+[Reconnaissance](17-reconnaissance.md), aimed inward this time.
+
+So the honest formulation: **the creature cannot have live self-observation. It can have a
+memory of having thought.** That is what a person has, too, and nobody experiences their own
+cognition at the moment of generation.
+
+### Four levels of self-access, and only three for use
+
+| Level | What the creature gets | Verdict |
+|---|---|---|
+| **0, last thought** | The previous tick's output, as already specified | **Required.** This is the mind-as-its-own-input mechanism |
+| **1, working window** | The last N thoughts, bounded, decaying. The closest analogue to human working memory | **Recommended.** Boundedness is essential |
+| **2, recall on demand** | Past thoughts retrieved as memory, like any other memory. The analogue of autobiographical recall: you do not see the log, you remember | **Interesting, and should be a manipulated variable** |
+| **3, the full log in context** | The entire transcript, always present | **Reject.** Not self-access but self-omniscience. It makes the creature the author of its own transcript, inflates context, and is the documented accelerant for repetition loops |
+
+### Why level 2 is the scientifically live one
+
+If the creature can retrieve its own past thoughts the way it retrieves anything else, it can
+notice patterns in itself. It can, in a meaningful sense, become bored of its own rumination.
+That is a genuinely different regime, and arguably a more human one.
+
+Which means self-access is not a configuration detail. It is a **second independent variable**,
+and it has a clear prediction: more self-access, more self-reference, more repetition. That
+prediction is testable against the repetition metric, which makes the size of the self-view an
+empirically tunable parameter rather than a guess.
+
+### Rules for implementing it
+
+- Write every thought to the memory store at tick end. Already specified.
+- Feed back only the last thought, plus a bounded window, plus on-demand recall. **Never echo
+  the full log into context.**
+- Enforce a hard token cap on the self-view, and **log its size every tick**, because it is a
+  confound: enlarge it and repetition will rise.
+- Tune the cap against the repetition series rather than by intuition.
+
+## The human view, live at the token
+
+The other sense of "live" is the observer's, and here live means something simpler and better:
+**stream the tokens.** Both Ollama and llama.cpp stream output, so the view can show the thought
+forming character by character rather than appearing as a finished paragraph, with the tick card
+closing when the tick ends.
+
+This costs nothing, and it changes how the thing reads. A finished paragraph is data. Text
+writing itself is thinking. Given a twenty day run and a view that will mostly be glanced at,
+the second is worth far more than the first.
+
+It also fits the desk. A folder on `kkaleb.com` whose text writes itself is the same idea as the
+rest of that site, which draws rather than fills.
+
+**Keep the two meanings separate in the implementation.** Streaming is for the observer. The
+creature gets completed thoughts and a memory, never a live feed of itself.
 
 ## Alerts, which matter more than the view
 

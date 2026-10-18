@@ -54,6 +54,10 @@ study rather than merely weakening it.
    Chosen attention under drive, or nothing.
 8. **State is durable on every tick.** Logs are the experiment. Write them from tick one, not
    from the first interesting tick.
+9. **Never echo the full thought log into the creature's context.** It gets its last thought, a
+   bounded window, and recall on demand. A full log in context is self-omniscience, it inflates
+   context, and it is a documented accelerant for repetition loops. See
+   [Monitoring](docs/18-monitoring.md).
 
 ## 3. What is decided
 
