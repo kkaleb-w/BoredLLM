@@ -204,3 +204,68 @@ fallback on this harness: it is worse on both failure metrics and costs more.
 
 Unchanged from section 6: a 2 GiB instance cannot host an 8B model, so the study runs against
 the API, and the model identifier must be pinned and logged every tick.
+
+
+## 9. Phase 1: the runtime, and what it changed
+
+The runtime now exists: **[github.com/kkaleb-w/boredllm-runtime](https://github.com/kkaleb-w/boredllm-runtime)**.
+One process, N creature instances, model pinned and written into every record.
+
+20 ticks, 2 creatures, `meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo`, total cost **$0.0002**.
+
+| Creature | mean rep | max rep | duplicates | empty | inhabiting | commentary | ticks asserting an invented fact |
+|---|---|---|---|---|---|---|---|
+| c0 | 0.152 | 1.0 | 1 | 1 | 55% | 30% | **70%** |
+| c1 | 0.056 | 0.196 | 0 | 0 | 55% | 15% | **75%** |
+
+**Repetition is under control. Invention is not.**
+
+### The finding: an oracle with no consequences is decorative
+
+Given a room containing a table, a cup, a locked door and a window, the creatures produced walls,
+a lamp, a chair, a plate, water, a house with other rooms, a photograph, a drawing of a tree, a
+phone receiver, and a person referred to only as `J----`. About seven ticks in ten assert
+something the world does not contain.
+
+The world owns the facts and says so on every tick. It makes no difference. **Being told the
+truth is not the same as being unable to be wrong.** Without a way to fail, an invented fact is
+indistinguishable from an observed one, and the creature builds a life in a room that does not
+exist.
+
+This moves the design requirement. The oracle is not a narrator, it is a **judge**, and Phase 2
+must give it the power to contradict: an action against an invented object has to fail, and the
+next observation has to implicitly correct the previous invention. Observation alone cannot hold
+a creature inside its world.
+
+### Seven constraints, each measured, each from a run that failed without it
+
+Recorded because they are all invisible until violated, and three of them contradicted what this
+dossier assumed.
+
+1. **No imperative in the input.** Held throughout, in every configuration, with zero assistant
+   artifacts. This is the one commitment the pilot never threatened.
+2. **The observation must be the creature's own flat first person.** A lyrical third-person
+   description of a room reads as a passage from a novel, and the model starts *analysing it*.
+   Twelve ticks produced page-numbered literary criticism of a story that did not exist, citing
+   `(p. 35)` and `(p. 37)`. Rewriting the oracle into flat first person took inhabiting from
+   **33% to 88%** and commentary to zero. **Register, not formatting, controls stance.**
+3. **Thoughts only in the self-view, never prior observations.** Replaying the world's own
+   observation lines is a self-similarity attractor: repetition rose from about **0.01 to about
+   0.32**.
+4. **No labelled history.** A `just now: ...` label is structural, so the model continues the
+   label and starts answering it, which seeds a quiz template.
+5. **A moving clock.** In fast mode the virtual clock must advance per tick. If it stands still,
+   every observation is identical and the run measures the freeze rather than the creature. This
+   was a methodology bug in our own harness, not a property of the model.
+6. **One small world detail changes per tick.** Nothing interesting, just not identical.
+7. **Oracle-filtering the self-view makes things worse.** Dropping invented thoughts from the
+   creature's history prunes the novel content and keeps the flat, so it **accelerates
+   monotony**. Off by default, available as an experimental variable.
+
+### Status after Phase 1
+
+The harness is not ready for a 20 day run, and should not be launched. Two things must be fixed
+first, and both are Phase 2 work: the oracle needs teeth, and commentary stance needs to come
+down from roughly a quarter of ticks. What Phase 1 did establish is that the base mechanism works
+at 8B on a cheap API, that no instruction is needed, and that the failure modes are now
+measurable rather than theoretical.

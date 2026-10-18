@@ -56,7 +56,8 @@ Otherwise:
 | [16. Study 1: Decision Record](docs/16-study-1-decisions.md) | The choices fixed before any run, with reasons and reversals |
 | [17. Reconnaissance](docs/17-reconnaissance.md) | What tooling exists, and what is already known about the two fatal risks |
 | [18. Monitoring](docs/18-monitoring.md) | The record, the view, and why alerts matter more than dashboards |
-| [19. Phase 0: Pilot Results](docs/19-phase-0-results.md) | The first run: a capability floor, four failure classes, and the model choice |
+| [19. Phase 0: Pilot Results](docs/19-phase-0-results.md) | The first runs: capability floor, failure classes, and the model choice |
+| [Runtime](https://github.com/kkaleb-w/boredllm-runtime) | The implementation, in its own repository |
 | [References](REFERENCES.md) | Every source cited, with links |
 
 ## Status

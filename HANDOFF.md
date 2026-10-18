@@ -208,6 +208,9 @@ Stated plainly, because they are the ones to watch.
 
 ## 10. Ownership
 
-Repo: `github.com/kkaleb-w/BoredLLM`. Owner: Kaleb Wright. No code in this repository by
-design. If code is written for this project, it belongs in a separate repository that links
-back here.
+Repo: `github.com/kkaleb-w/BoredLLM` (design, no code) and
+`github.com/kkaleb-w/boredllm-runtime` (the implementation). Owner: Kaleb Wright.
+
+Phase 1 ran and is written up in [Phase 0 results](docs/19-phase-0-results.md), section 9. Headline:
+an oracle with no consequences is decorative, so Phase 2 must give the world the power to
+contradict before any long run is attempted.
