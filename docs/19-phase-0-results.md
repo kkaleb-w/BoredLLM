@@ -147,3 +147,60 @@ precisely needs a same-family, same-host ladder.
 - [The Experiment](09-the-experiment.md) for the protocol this is the first run of
 - [Reconnaissance](17-reconnaissance.md) for the loop risk and the format finding
 - [Monitoring](18-monitoring.md) for the metrics this run added
+
+
+## 8. Head-to-head: Llama 3.1 8B Turbo against Qwen3.5 9B
+
+Same harness, same room text, same seed, **30 ticks each**. Two metrics: repetition, and a
+**stance** classification, because repetition does not catch the failure that matters at this
+size.
+
+| Model | Repetition | Duplicates | Empty responses | Stance: inhabiting | s/tick | $/Mtok in | $/Mtok out |
+|---|---|---|---|---|---|---|---|
+| **Llama-3.1-8B-Instruct-Turbo** | 0.008 | **0 / 30** | **0 / 30** | 57% | 1.8 | 0.02 | 0.04 |
+| Qwen3.5-9B | 0.018 | **8 / 30** | **9 / 30** | 37% | 2.7 | 0.10 | 0.15 |
+
+**Llama 3.1 8B Turbo wins clearly.** Zero duplicate thoughts, zero empty generations, no
+assistant reversion, no template collapse, and it is **3.4 times cheaper**. Qwen3.5-9B, which
+looked clean over 15 ticks, produced 8 exact duplicates and 9 blank responses out of 30. Its
+blank responses are the more serious fault: a third of its ticks produced nothing at all.
+
+### Cost at study scale
+
+Measured from the run: 100 prompt tokens and 48 completion tokens per tick on the 8B.
+
+| Run | Cost |
+|---|---|
+| One creature, 20 days at a 10 minute tick | **$0.011** |
+| Three creatures, 20 days | **$0.034** |
+
+Three cents for the entire study. Cost is not a constraint on this project at any size tested.
+
+### The 8B's actual failure: it invents a life
+
+The 8B does not loop and does not report on itself. What it does is **embellish**. Given one
+room containing a table, a cup and a locked door, it produced, unprompted:
+
+> "As I walk into the next room I see the lock on the other door is gone. I walk out of the house"
+> "I recently found an old journal entry in my belongings, and it described my experiences with
+> retrograde amnesia"
+> "She hasn't tried to get the book yet. That means I'm still on her book list."
+
+A house with multiple rooms. A journal. A woman. A book list. None of it exists. This is the
+**world hallucination** class from section 4, and at 8B it is the dominant failure rather than a
+side effect. It is also the failure the design is best equipped to fix: the world owns the
+facts, so the world can simply refuse, and every invented fact is a logged metric.
+
+**Correction to an earlier reading.** A 25 tick run ended on a paragraph that looked like
+literary criticism of its own stream, and that was noted as a possible stance shift. Over 30
+ticks the stance metric puts commentary at **zero** for the 8B. The reading was wrong, and one
+sample was not enough to draw it from.
+
+### Revised model decision
+
+**Substrate: `meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo`.** It clears every check the pilot
+runs, it is the cheapest option tested, and it needs no fallback. Qwen3.5-9B is not a suitable
+fallback on this harness: it is worse on both failure metrics and costs more.
+
+Unchanged from section 6: a 2 GiB instance cannot host an 8B model, so the study runs against
+the API, and the model identifier must be pinned and logged every tick.
