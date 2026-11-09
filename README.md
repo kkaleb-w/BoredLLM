@@ -57,13 +57,27 @@ Otherwise:
 | [17. Reconnaissance](docs/17-reconnaissance.md) | What tooling exists, and what is already known about the two fatal risks |
 | [18. Monitoring](docs/18-monitoring.md) | The record, the view, and why alerts matter more than dashboards |
 | [19. Phase 0: Pilot Results](docs/19-phase-0-results.md) | The first runs: capability floor, failure classes, and the model choice |
+| [20. What It Became: Ultron](docs/20-ultron-field-report.md) | The field report: four and a half days of a self-extending agent, measured |
 | [Runtime](https://github.com/kkaleb-w/boredllm-runtime) | The implementation, in its own repository |
 | [References](REFERENCES.md) | Every source cited, with links |
 
+## What actually happened
+
+The experiment above was not run as written. The creature was built, then rebuilt as a
+self-extending agent called **Ultron**: a brief instead of a room, a shell instead of a body,
+and one instruction, which was to build whatever capability it lacked. It ran for four and a
+half days on its own instance, reached 264 tools at peak, compiled its own Python from source,
+never built a memory, and killed itself with a process killer it wrote. The instance was wiped
+on 23 October.
+
+That run has its own report: [20. What It Became](docs/20-ultron-field-report.md). It belongs
+here because the negative result is the result.
+
 ## Status
 
-Design document. Not implemented. Written to be handed to an engineer, and to be wrong in
-interesting ways. Start at [HANDOFF.md](HANDOFF.md).
+Design document, and then an accident. The full protocol in
+[09](docs/09-the-experiment.md) remains unrun. What ran instead is documented in
+[20](docs/20-ultron-field-report.md). Start at [HANDOFF.md](HANDOFF.md) if you are implementing.
 
 ## What this is not
 
